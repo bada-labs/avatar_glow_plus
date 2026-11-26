@@ -20,11 +20,11 @@ class AvatarGlow extends StatefulWidget {
     this.animate = true,
     this.repeat = true,
     this.curve = Curves.fastOutSlowIn,
-  }) : assert(
-         glowShape != BoxShape.circle || glowBorderRadius == null,
-         'A circle cannot have a border radius.',
-       ),
-       assert(glowCount > 0, 'glowCount must be positive.');
+  })  : assert(
+          glowShape != BoxShape.circle || glowBorderRadius == null,
+          'A circle cannot have a border radius.',
+        ),
+        assert(glowCount > 0, 'glowCount must be positive.');
 
   /// The widget the glow surrounds.
   final Widget child;
@@ -167,11 +167,10 @@ class _GlowPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final fadingOpacity = _initialGlowOpacity * (1 - progress.value);
-    final glowPaint =
-        Paint()
-          ..color = glowColor.withAlpha(
-            (255 * glowColor.a * fadingOpacity).round(),
-          );
+    final glowPaint = Paint()
+      ..color = glowColor.withAlpha(
+        (255 * glowColor.a * fadingOpacity).round(),
+      );
     final childRadius = math.min(size.width, size.height) / 2;
     final easedProgress = curve.transform(progress.value);
     final center = size.center(Offset.zero);
@@ -181,8 +180,7 @@ class _GlowPainter extends CustomPainter {
     // and the anti-aliased edges match the original pixel for pixel.
     final ringsPath = Path();
     for (var ringIndex = 1; ringIndex <= glowCount; ringIndex++) {
-      final ringRadius =
-          childRadius +
+      final ringRadius = childRadius +
           childRadius * glowRadiusFactor * ringIndex * easedProgress;
       final ringBounds = Rect.fromCircle(center: center, radius: ringRadius);
       ringsPath.addPath(_ringPath(ringBounds), Offset.zero);
@@ -194,8 +192,8 @@ class _GlowPainter extends CustomPainter {
     final borderRadius = glowBorderRadius;
     return switch (glowShape) {
       BoxShape.circle => Path()..addOval(ringBounds),
-      BoxShape.rectangle when borderRadius != null =>
-        Path()..addRRect(borderRadius.toRRect(ringBounds)),
+      BoxShape.rectangle when borderRadius != null => Path()
+        ..addRRect(borderRadius.toRRect(ringBounds)),
       BoxShape.rectangle => Path()..addRect(ringBounds),
     };
   }
