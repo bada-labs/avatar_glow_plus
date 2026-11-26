@@ -1,0 +1,25 @@
+name: avatar_glow_plus
+description: >-
+  Pulsing glow rings around any widget, such as an avatar or a call button. A
+  maintained successor of avatar_glow for current Flutter.
+version: 3.1.0
+repository: https://github.com/bada-labs/avatar_glow_plus
+issue_tracker: https://github.com/bada-labs/avatar_glow_plus/issues
+topics:
+  - animation
+  - avatar
+  - widget
+
+environment:
+  sdk: ^3.7.0
+  flutter: ">=3.27.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  avatar_glow: 3.0.1
+  flutter_lints: ^6.0.0
+  flutter_test:
+    sdk: flutter
